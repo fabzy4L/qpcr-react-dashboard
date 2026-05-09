@@ -1,16 +1,21 @@
-# React + Vite
+# qPCR Expression Atlas Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive React-based visualization platform for analyzing gene expression changes in human and rat brains following nicotine exposure. This tool serves as the visual companion to the research published in *Frontiers in Psychiatry* (2023).
 
-Currently, two official plugins are available:
+## Features
+- **Interactive Heatmap:** Real-time fold-change visualization with GAPDH-normalized standard colors.
+- **Statistical Distributions:** Comparative dot plots with Mean/SD error bars and automated ratio calculations.
+- **Quality Control Suite:** Transparent reporting of technical anomalies (e.g., standard curve inversions) and outlier management.
+- **Cross-Platform Design:** Optimized for high-resolution displays used in laboratory environments.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Scientific Context
+The data visualized here explores the sex and diet-dependent effects of nicotine on neuroplasticity markers. It specifically highlights the dysregulation of sphingolipid metabolism-related genes (`CERKL`, `FA2H`) and oligodendrocyte function.
 
-## React Compiler
+## Architecture
+This project follows a modular React architecture:
+- **/src/components**: Reusable UI modules for different data views.
+- **/src/data**: Immutable experimental datasets.
+- **/src/utils**: Statistical engine for real-time qPCR transformations.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Publication Link
+[Vargas-Medrano J, et al. (2023). Sex and diet-dependent gene alterations... Front. Psychiatry](https://doi.org/10.3389/fpsyt.2023.1104563)

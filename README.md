@@ -1,6 +1,6 @@
 # qPCR Expression Atlas Dashboard
 
-An interactive React-based visualization platform for analyzing gene expression changes in human and rat brains following nicotine exposure. This tool serves as the visual companion to the research published in *Frontiers in Psychiatry* (2023).
+An interactive React viewer for an exploratory qPCR panel from a vicarious defeat stress (VDS) study: 13 targets, nine VDS samples and nine controls, GAPDH-normalized fold change. The data are unpublished and shown with the lab's agreement. Live at https://fabzy4l.github.io/qpcr/.
 
 ## Features
 - **Interactive Heatmap:** Real-time fold-change visualization with GAPDH-normalized standard colors.
@@ -9,13 +9,12 @@ An interactive React-based visualization platform for analyzing gene expression 
 - **Cross-Platform Design:** Optimized for high-resolution displays used in laboratory environments.
 
 ## Scientific Context
-The data visualized here explores the sex and diet-dependent effects of nicotine on neuroplasticity markers. It specifically highlights the dysregulation of sphingolipid metabolism-related genes (`CERKL`, `FA2H`) and oligodendrocyte function.
+Vicarious defeat stress is a rodent model in which an animal witnesses another being socially defeated. This panel is exploratory: the page shows per-sample values, group means and SD, and three QC flags (inverted BCAS1 and MOBP standard curves, refit and marked ★; control C6 low RNA input). No statistical tests are run.
+
+Not to be confused with the nicotine study from the same lab (Vargas-Medrano *et al.*, *Front. Psychiatry* 2023, [doi:10.3389/fpsyt.2023.1104563](https://doi.org/10.3389/fpsyt.2023.1104563)), which measured CHRNA10, CERKL, SMYD1 and FA2H; that data lives in `DATA_ANALYTICS/bioinformatics/nicotine_gene_expression`.
 
 ## Architecture
 This project follows a modular React architecture:
 - **/src/components**: Reusable UI modules for different data views.
 - **/src/data**: Immutable experimental datasets.
 - **/src/utils**: Statistical engine for real-time qPCR transformations.
-
-## Publication Link
-[Vargas-Medrano J, et al. (2023). Sex and diet-dependent gene alterations... Front. Psychiatry](https://doi.org/10.3389/fpsyt.2023.1104563)

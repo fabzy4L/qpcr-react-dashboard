@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { THEME } from "./styles/theme";
 import Header from "./components/Header";
+import About from "./components/About";
 import HeatmapView from "./components/HeatmapView";
 import DistributionView from "./components/DistributionView";
 import QCFlagsView from "./components/QCFlagsView";
@@ -17,6 +18,7 @@ export default function App() {
          onMouseMove={e=>{setMx(e.clientX);setMy(e.clientY);}}>
 
       <Header tab={tab} setTab={setTab} />
+      <About />
 
       <div style={{padding:'20px 28px'}}>
         {tab === 'heatmap' && <HeatmapView setTt={setTt} />}

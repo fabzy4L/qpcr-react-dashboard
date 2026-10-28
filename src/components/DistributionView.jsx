@@ -26,10 +26,10 @@ export default function DistributionView({ setTt }) {
       <div style={{display:'flex',flexWrap:'wrap',gap:6,marginBottom:20}}>
         {GENES.map(g=>(
           <button key={g} onClick={()=>setSelG(g)}
-            style={{padding:'5px 11px',background:selG===g?ACCENT:'#0c1922',
-              color:selG===g?BG:DIM,border:`1px solid ${selG===g?ACCENT:'#182f44'}`,
+            style={{padding:'5px 11px',background:selG===g?ACCENT:'#141412',
+              color:selG===g?BG:DIM,border:`1px solid ${selG===g?ACCENT:'#2a2925'}`,
               borderRadius:3,fontSize:9,letterSpacing:0.5,cursor:'pointer',outline:'none',
-              fontFamily:"'Courier New',Courier,monospace"}}>
+              fontFamily:"ui-monospace,Consolas,monospace"}}>
             {g}
           </button>
         ))}
@@ -41,19 +41,19 @@ export default function DistributionView({ setTt }) {
           <text x={PW/2} y={16} textAnchor="middle" fill={ACCENT} fontSize={12} letterSpacing={2} fontWeight="bold">{selG}</text>
 
           {/* Y axis */}
-          <line x1={PL} y1={PT} x2={PL} y2={PH-PB} stroke="#1a3550" strokeWidth={1}/>
+          <line x1={PL} y1={PT} x2={PL} y2={PH-PB} stroke="#3a3833" strokeWidth={1}/>
           {[...Array(6)].map((_,i)=>{
             const v=(maxV/5)*i, y=toY(v);
             return (
               <g key={i}>
-                <line x1={PL-4} y1={y} x2={PL} y2={y} stroke="#1a3550"/>
+                <line x1={PL-4} y1={y} x2={PL} y2={y} stroke="#3a3833"/>
                 <text x={PL-6} y={y+3} textAnchor="end" fill={DIM} fontSize={8}>{v.toFixed(1)}</text>
-                <line x1={PL} y1={y} x2={PW-20} y2={y} stroke="#0c2030" strokeWidth={0.5}/>
+                <line x1={PL} y1={y} x2={PW-20} y2={y} stroke="#2a2925" strokeWidth={0.5}/>
               </g>
             );
           })}
-          <line x1={PL} y1={toY(1)} x2={PW-20} y2={toY(1)} stroke="#1e4565" strokeWidth={1} strokeDasharray="5,3"/>
-          <text x={PW-18} y={toY(1)+3} fill="#1e4565" fontSize={7.5} textAnchor="middle">1.0</text>
+          <line x1={PL} y1={toY(1)} x2={PW-20} y2={toY(1)} stroke="#3a3833" strokeWidth={1} strokeDasharray="5,3"/>
+          <text x={PW-18} y={toY(1)+3} fill="#3a3833" fontSize={7.5} textAnchor="middle">1.0</text>
 
           {/* Y axis label */}
           <text x={12} y={PT+plotH/2} textAnchor="middle" fill={DIM} fontSize={8.5} letterSpacing={1}
@@ -72,8 +72,8 @@ export default function DistributionView({ setTt }) {
             <g key={CTRL[i].id} style={{cursor:'crosshair'}}
               onMouseEnter={()=>setTt({sample:CTRL[i].id,gene:selG,val:v,type:'CTRL',out:CTRL[i].out})}
               onMouseLeave={()=>setTt(null)}>
-              <circle cx={CX+JITTER[i]} cy={toY(v)} r={5.5} fill={CTRL[i].out?'#ffaa44':CBLUE} opacity={0.85}/>
-              {CTRL[i].out&&<circle cx={CX+JITTER[i]} cy={toY(v)} r={8} fill="none" stroke="#ffaa44" strokeWidth={1}/>}
+              <circle cx={CX+JITTER[i]} cy={toY(v)} r={5.5} fill={CTRL[i].out?'#d9a441':CBLUE} opacity={0.85}/>
+              {CTRL[i].out&&<circle cx={CX+JITTER[i]} cy={toY(v)} r={8} fill="none" stroke="#d9a441" strokeWidth={1}/>}
             </g>
           ))}
 
@@ -93,7 +93,7 @@ export default function DistributionView({ setTt }) {
           ))}
 
           {/* Connector dashed line */}
-          <line x1={CX+40} y1={toY(cMean)} x2={VX-40} y2={toY(vMean)} stroke="#1e4060" strokeWidth={1} strokeDasharray="4,4"/>
+          <line x1={CX+40} y1={toY(cMean)} x2={VX-40} y2={toY(vMean)} stroke="#3a3833" strokeWidth={1} strokeDasharray="4,4"/>
         </svg>
 
         {/* Stats row */}
@@ -103,9 +103,9 @@ export default function DistributionView({ setTt }) {
             {l:'Ctrl SD',v:'\u00b1'+cSD.toFixed(4),c:CBLUE},
             {l:'VDS Mean',v:vMean.toFixed(4),c:VCORAL},
             {l:'VDS SD',v:'\u00b1'+vSD.toFixed(4),c:VCORAL},
-            {l:'VDS / Ctrl',v:ratio.toFixed(3)+'x',c:ratio>1.25?'#ff8844':ratio<0.8?'#5599ff':ACCENT},
+            {l:'VDS / Ctrl',v:ratio.toFixed(3)+'x',c:ratio>1.25?'#e8520a':ratio<0.8?'#6f9ab8':ACCENT},
           ].map(s=>(
-            <div key={s.l} style={{background:'#0c1922',border:'1px solid #182f44',borderRadius:4,padding:'8px 14px',minWidth:100}}>
+            <div key={s.l} style={{background:'#141412',border:'1px solid #2a2925',borderRadius:4,padding:'8px 14px',minWidth:100}}>
               <div style={{color:DIM,fontSize:8.5,letterSpacing:1,marginBottom:3}}>{s.l}</div>
               <div style={{color:s.c,fontSize:13,fontWeight:'bold'}}>{s.v}</div>
             </div>
@@ -121,7 +121,7 @@ export default function DistributionView({ setTt }) {
                 <tr>
                   {['GENE','CTRL MEAN','CTRL SD','VDS MEAN','VDS SD','RATIO','DIRECTION'].map(h=>(
                     <th key={h} style={{padding:'6px 12px',textAlign:'left',color:DIM,fontWeight:'normal',
-                      letterSpacing:1,borderBottom:'1px solid #0e2535',fontSize:8.5}}>{h}</th>
+                      letterSpacing:1,borderBottom:'1px solid #2a2925',fontSize:8.5}}>{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -131,16 +131,16 @@ export default function DistributionView({ setTt }) {
                   const cS=gsd(CTRL,g),vS=gsd(VDS,g);
                   const r=vM/cM;
                   const up=r>1.25,dn=r<0.80;
-                  const bg=g===selG?'#0c2035':'transparent';
+                  const bg=g===selG?'#2a2925':'transparent';
                   return (
                     <tr key={g} style={{background:bg,cursor:'pointer'}} onClick={()=>setSelG(g)}>
-                      <td style={{padding:'5px 12px',color:g.includes('\u2605')?ACCENT:'#7898b8',fontWeight:'bold'}}>{g}</td>
+                      <td style={{padding:'5px 12px',color:g.includes('\u2605')?ACCENT:'#aeaaa2',fontWeight:'bold'}}>{g}</td>
                       <td style={{padding:'5px 12px',color:CBLUE}}>{cM.toFixed(4)}</td>
-                      <td style={{padding:'5px 12px',color:'#304860'}}>±{cS.toFixed(3)}</td>
+                      <td style={{padding:'5px 12px',color:'#6e6a63'}}>±{cS.toFixed(3)}</td>
                       <td style={{padding:'5px 12px',color:VCORAL}}>{vM.toFixed(4)}</td>
-                      <td style={{padding:'5px 12px',color:'#603040'}}>±{vS.toFixed(3)}</td>
-                      <td style={{padding:'5px 12px',color:up?'#ff8844':dn?'#5599ff':DIM,fontWeight:'bold'}}>{r.toFixed(3)}x</td>
-                      <td style={{padding:'5px 12px',color:up?'#ff8844':dn?'#5599ff':DIM,fontSize:8.5}}>
+                      <td style={{padding:'5px 12px',color:'#4a2a1a'}}>±{vS.toFixed(3)}</td>
+                      <td style={{padding:'5px 12px',color:up?'#e8520a':dn?'#6f9ab8':DIM,fontWeight:'bold'}}>{r.toFixed(3)}x</td>
+                      <td style={{padding:'5px 12px',color:up?'#e8520a':dn?'#6f9ab8':DIM,fontSize:8.5}}>
                         {up?'\u2191 HIGHER IN VDS':dn?'\u2193 LOWER IN VDS':'\u2014'}
                       </td>
                     </tr>

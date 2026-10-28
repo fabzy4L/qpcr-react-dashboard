@@ -13,7 +13,7 @@ export default function App() {
   const [my, setMy] = useState(0);
 
   return (
-    <div style={{background:THEME.BG,minHeight:'100vh',fontFamily:"'Courier New',Courier,monospace",color:'#98bcd0',userSelect:'none'}}
+    <div style={{background:THEME.BG,minHeight:'100vh',fontFamily:"ui-monospace,Consolas,monospace",color:'#c8c4bc',userSelect:'none'}}
          onMouseMove={e=>{setMx(e.clientX);setMy(e.clientY);}}>
 
       <Header tab={tab} setTab={setTab} />

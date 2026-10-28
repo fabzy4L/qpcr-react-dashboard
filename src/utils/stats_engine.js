@@ -1,15 +1,14 @@
 export function foldColor(v) {
   const val = Math.min(Math.max(v, 0), 7);
-  if (val <= 1.0) {
-    const t = val;
-    return `rgb(${Math.round(18+t*227)},${Math.round(58+t*187)},${Math.round(178+t*72)})`;
-  }
-  const t = Math.min((val - 1) / 6, 1);
-  return `rgb(${Math.round(245-t*45)},${Math.round(245-t*215)},${Math.round(250-t*220)})`;
+  // Dark neutral at 1.0; steel below, site orange above. sqrt keeps 0.8 and 2 visible on a dark base.
+  const N = [30, 29, 26], LO = [96, 138, 168], HI = [232, 82, 10];
+  const t = val <= 1.0 ? Math.sqrt(1 - val) : Math.sqrt(Math.min((val - 1) / 6, 1));
+  const E = val <= 1.0 ? LO : HI;
+  return `rgb(${N.map((n, i) => Math.round(n + t * (E[i] - n))).join(',')})`;
 }
 
-export function txtCol(v) { 
-  return (v < 0.62 || v > 2.1) ? '#fff' : '#091520'; 
+export function txtCol(v) {
+  return v > 5.5 ? '#0a0a09' : '#f0ede8';
 }
 
 export function gmean(arr, g) { 
